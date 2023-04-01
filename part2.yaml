@@ -1,0 +1,10 @@
+version: '3'
+services:
+  chatbot:
+      image: 7940image
+      environment:
+          ACCESS_TOKEN:	6144727854:AAG3aC1gDIS68-3lsSvRYZhK-JxSOe6QGZ4
+          HOST:		redis-10573.c282.east-us-mz.azure.cloud.redislabs.com
+          PASSWORD: 	nrfO9cyq2pPD3h1byeMIrvNBzJEWQsCp
+          REDISPORT: 	10573
+      command: python chatbot.py

@@ -1,0 +1,53 @@
+Part 1A
+
+cd docker_01
+docker run -i -d --name mycontainer python
+docker cp chatbot.py mycontainer:/
+docker cp requirements.txt mycontainer:/
+docker exec -it mycontainer bash
+
+pip install pip update
+pip install -r requirements.txt	
+exit
+docker commit mycontainer comp7940
+
+ACCESS_TOKEN
+HOST
+PASSWORD
+REDISPORT
+
+docker run --name lab7partA -d --env ACCESS_TOKEN=6144727854:AAG3aC1gDIS68-3lsSvRYZhK-JxSOe6QGZ4 --env HOST="redis-10573.c282.east-us-mz.azure.cloud.redislabs.com" --env PASSWORD="nrfO9cyq2pPD3h1byeMIrvNBzJEWQsCp" --env REDISPORT=10573 comp7940 python chatbot.py
+
+////////Dockerfile///
+
+FROM python
+COPY chatbot.py .
+COPY requirements.txt .
+ENV ACCESS_TOKEN	6144727854:AAG3aC1gDIS68-3lsSvRYZhK-JxSOe6QGZ4
+ENV HOST redis-10573.c282.east-us-mz.azure.cloud.redislabs.com
+ENV PASSWORD nrfO9cyq2pPD3h1byeMIrvNBzJEWQsCp
+ENV REDISPORT 10573
+RUN pip install -r requirements.txt
+CMD pythan chatbot.py
+
+
+//////// 
+
+Part 1B
+
+docker build -t 7940image2 .
+docker run --name lab7partB -d 7940image2
+
+
+Part 2:
+///push Dockerfile to heroku app//
+
+heroku auth:login
+heroku container:login
+heroku container:push worker -a comp7940lab5vctest001
+heroku container:release worker -a comp7940lab5vctest001
+
+
+docker-compose build
+docker-compose up -d
+
